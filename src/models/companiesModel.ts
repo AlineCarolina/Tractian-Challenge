@@ -14,7 +14,19 @@ async function createCompany({ razaoSocial, cnpj, endereco, telefone }){
   return company;
 }
 
+async function updateCompany({ razaoSocial, cnpj, endereco, telefone }, id){
+  const company = await Companies.findByIdAndUpdate(id, { razaoSocial, cnpj, endereco, telefone });
+  return company;
+}
+
+async function deleteCompany(id){
+  const company = await Companies.findOneAndDelete({ _id: id });
+  return company;
+}
+
 export default {
   getCompanies,
   createCompany,
+  updateCompany,
+  deleteCompany,
 };
