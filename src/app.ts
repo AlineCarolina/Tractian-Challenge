@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import companiesController from './controllers/companiesController';
 import usersController from './controllers/usersController';
+import unitsController from './controllers/unitsController';
 
 dotenv.config();
 const app = express();
@@ -35,3 +36,11 @@ app.post('/users', usersController.createUser);
 app.post('/users/:id', usersController.updateUser);
 
 app.delete('/users/:id', usersController.deleteUser);
+
+app.get('/units', unitsController.getUnits);
+
+app.post('/units', unitsController.createUnit);
+
+app.post('/units/:id', unitsController.updateUnit);
+
+app.delete('/units/:id', unitsController.deleteUnit);
