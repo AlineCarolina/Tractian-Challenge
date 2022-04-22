@@ -1,31 +1,13 @@
-import { Schema, model } from 'mongoose';
-import { CompaniesInterface } from '../interfaces.ts/companiesInterface';
-
-const usersSchema = new Schema({
-  name: String,
-});
-
-const assetsSchema = new Schema({
-  image: String,
-  name: String,
-  description: String,
-  model: String,
-  owner: String,
-  status: String,
-  healthLevel: String,
-});
-
-const unitsSchema = new Schema({
-  unitName: [String],
-  assets: [assetsSchema],
-});
+import { Schema } from 'mongoose';
+import { CompaniesInterface } from '../interfaces/companiesInterface';
 
 const companiesSchema = new Schema<CompaniesInterface>({
-  name: String,
-  users: [usersSchema],
-  units: [unitsSchema],
+  razaoSocial: String,
+  cnpj: String,
+  endereco: String,
+  telefone: String,
 });
 
-const Companies = model('Companies', companiesSchema);
-
-export default Companies;
+export default {
+  companiesSchema,
+};

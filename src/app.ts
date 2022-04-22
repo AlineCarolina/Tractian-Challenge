@@ -18,5 +18,7 @@ mongoose.connect('mongodb://localhost:27017/db')
   });
 
 app.listen(port, () => console.log(`Online: ${port}`));
-app.post('/companies', companiesController.createCompany);
+
 app.get('/companies', companiesController.getCompanies);
+
+app.post('/companies', companiesController.createCompany);

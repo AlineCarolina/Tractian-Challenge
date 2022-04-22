@@ -1,31 +1,20 @@
 import mongoose from 'mongoose';
-import Companies from '../schemas/companiesSchema';
+import { CompaniesInterface } from '../interfaces/companiesInterface';
+import companiesSchema from '../schemas/companiesSchema';
 
-mongoose.connect('mongodb://db:27017/companies');
+const Companies = mongoose.model<CompaniesInterface>('Company', companiesSchema.companiesSchema);
 
-run();
-async function run() {
-    try {
-        const companies = await Companies.create({
-            companies: {
-                name: 'Company 1',
-                users: 'user1',
-                units: {
-                    assets: {
-                        image: 'image1',
-                        name: 'name1',
-                        description: 'description1',
-                        model: 'model1',
-                        owner: 'owner1',
-                        status: 'status1',
-                        healthLevel: 'healthLevel1',
-                    },
-                },
-            }
-        });
-        console.log(companies);
-    } catch (error) {
-        console.log(error.message);
-    }
-    
+async function getCompanies() {
+  const company = await Companies.find();
+  return company;
 }
+
+async function createCompany({ razaoSocial, cnpj, endereco, telefone }){
+  const company = await Companies.create({ razaoSocial, cnpj, endereco, telefone });
+  return company;
+}
+
+export default {
+  getCompanies,
+  createCompany,
+};
