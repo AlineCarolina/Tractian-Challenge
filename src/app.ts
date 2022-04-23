@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import companiesController from './controllers/companiesController';
 import usersController from './controllers/usersController';
 import unitsController from './controllers/unitsController';
+import assetsController from './controllers/assetsController';
 
 dotenv.config();
 const app = express();
@@ -44,3 +45,11 @@ app.post('/units', unitsController.createUnit);
 app.post('/units/:id', unitsController.updateUnit);
 
 app.delete('/units/:id', unitsController.deleteUnit);
+
+app.get('/assets', assetsController.getAssets);
+
+app.post('/assets', assetsController.createAsset);
+
+app.post('/assets/:id', assetsController.updateAsset);
+
+app.delete('/assets/:id', assetsController.deleteAsset);
