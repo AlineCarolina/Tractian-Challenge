@@ -13,6 +13,7 @@ const createUser = async (req, res) => {
   const { name, empresa } = req.body;
   try {
     const user = await usersService.createUser({ name, empresa });
+    const token = await createToken(user);
     return res.status(201).json(user);
   } catch (error) {
     return console.log(error.message);
@@ -46,3 +47,7 @@ export default {
   updateUser,
   deleteUser,
 };
+function createToken(user: any) {
+  throw new Error("Function not implemented.");
+}
+

@@ -6,13 +6,18 @@ import companiesController from './controllers/companiesController';
 import usersController from './controllers/usersController';
 import unitsController from './controllers/unitsController';
 import assetsController from './controllers/assetsController';
+import { ConnectOptions } from 'mongodb';
 
 dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://localhost:27017/db')
+const url = 'mongodb://db:27017/db';
+
+mongoose.connect(url, {
+  useNewUrlParser: true,
+} as ConnectOptions)
   .then(() => {
     console.log('MongoDB Connected');
   })
